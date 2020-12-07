@@ -25,7 +25,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<double> graphData = [0.1,0.2];
+    List<double> graphData = [0.1,0.3];
     List<Feature> features = [
       Feature(
         title: "自分が読んだ文字数",

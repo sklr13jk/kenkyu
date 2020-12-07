@@ -9,6 +9,7 @@ class LoginModel extends ChangeNotifier {
       'https://www.googleapis.com/auth/contacts.readonly',
     ],
   );
+
   // final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -22,7 +23,7 @@ class LoginModel extends ChangeNotifier {
       if (googleCurrentUser == null) return null;
 
       GoogleSignInAuthentication googleAuth =
-      await googleCurrentUser.authentication;
+          await googleCurrentUser.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
