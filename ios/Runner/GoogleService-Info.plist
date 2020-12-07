@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>890658652482-2ubg24l17o0j3rp0eipa81g1udtgq5uk.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.890658652482-2ubg24l17o0j3rp0eipa81g1udtgq5uk</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC0AYD_edfARBDaMvcHWwy0xMfgfT5jstU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>890658652482</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.kenkyuApp</string>
+	<key>PROJECT_ID</key>
+	<string>kenkyu-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>kenkyu-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:890658652482:ios:e64f93c5bf3b30a84708db</string>
+	<key>DATABASE_URL</key>
+	<string>https://kenkyu-app.firebaseio.com</string>
+</dict>
+</plist>
