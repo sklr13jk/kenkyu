@@ -15,6 +15,7 @@ class MainPage extends StatelessWidget {
   String name = '';
   String email;
   String photoUrl;
+  Map<String, double> eventList;
 
   MainPage({User userData}) {
     this.userData = userData;
@@ -25,19 +26,6 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<double> graphData = [0.1,0.3];
-    List<Feature> features = [
-      Feature(
-        title: "自分が読んだ文字数",
-        color: Colors.blue,
-        data: graphData,
-      ),
-      // Feature(
-      //   title: "Exercise",
-      //   color: Colors.pink,
-      //   data: [1, 0.8, 0.6, 0.7, 0.3],
-      // ),
-    ];
     return MaterialApp(
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
       title: 'メイン画面',
@@ -52,7 +40,9 @@ class MainPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => AddWordPage(userEmail: email)),
+                    builder: (context) => AddWordPage(
+                          userEmail: email,
+                        )),
                 //↑AddWordPageっていうクラスないのuserEmailっていう変数にemailを代入しまっせ
               );
               //
@@ -62,13 +52,10 @@ class MainPage extends StatelessWidget {
               FloatingActionButtonLocation.centerFloat,
           //todo ↑場所の指定
           appBar: AppBar(
-            // leading: Icon(Icons.menu),
             title: Consumer<MainModel>(builder: (context, model, child) {
               model.userEmail = email;
-              graphData = model.graphData;
-              //print(graphData);
               //todo ↑モデルのuseremailをemailに代入するよ
-              return Text(model.appBarTitle);
+              return Text('習慣確認画面');
               //todo ↑{}があると大体returnする
             }),
           ),
@@ -102,10 +89,20 @@ class MainPage extends StatelessWidget {
             },
           ),
           body: Consumer<MainModel>(builder: (context, model, child) {
+            List<double> graphData = [0];
+            graphData = model.currentUserReadList;
+            List<Feature> features = [
+              Feature(
+                title: "自分が読んだ文字数",
+                color: Colors.blue,
+                data: graphData,
+              ),
+            ];
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                Text(model.currentUserReadList.length.toString()),
                 Container(),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 64.0),
@@ -122,6 +119,7 @@ class MainPage extends StatelessWidget {
                   features: features,
                   size: Size(500, 400),
                   labelX: [
+                    '  ',
                     'Day1',
                     'Day2',
                     'Day3',
