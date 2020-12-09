@@ -26,7 +26,7 @@ class MainModel extends ChangeNotifier {
 
   Future fetchEvents() async {
     currentUserReadList = [0];
-    currentUserTimeList = ['start'];
+    currentUserTimeList = ['st'];
     currentUserIdList = [userEmail];
     eventList = {};
     final docs = await FirebaseFirestore.instance.collection('wordList').get();
