@@ -23,8 +23,8 @@ class MainModel extends ChangeNotifier {
     false,
     false
   ];
+  Map<int, List> eventSubList = {};
   Map<int, List> eventList = {};
-  int p;
 
   Future<void> handleSignOut() async {
     await FirebaseAuth.instance.signOut();
@@ -36,7 +36,7 @@ class MainModel extends ChangeNotifier {
   }
 
   Future fetchEvents() async {
-    p = 0;
+    eventSubList = {};
     eventList = {};
     currentUserReadList = [0];
     currentUserDaysList = [0];
@@ -70,12 +70,18 @@ class MainModel extends ChangeNotifier {
     print('currentUserReadList:${currentUserReadList.length}');
     print('currentUserDaysList:${currentUserDaysList.length}');
     print('currentUserIdList:${currentUserIdList.length}');
-    //todo
+
+    for (int i = 0; i < currentUserDaysList.length; i++) {
+      eventSubList[currentUserDaysList[i]] = [
+        currentUserIdList[i],
+        currentUserReadList[i]
+      ];
+    }
+
     for (int i = 0; i < 8; i++) {
-      if (currentUserDaysList.contains(i)) {
-        eventList[i] = [currentUserIdList[p], currentUserReadList[p]];
+      if (eventSubList.containsKey(i)) {
+        eventList[i] = [eventSubList[i][0], eventSubList[i][1]];
         daysFinder[i] = true;
-        p++;
       } else {
         eventList[i] = ['dummy', 0.0];
         daysFinder[i] = false;

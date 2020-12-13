@@ -59,6 +59,7 @@ class MainPage extends StatelessWidget {
                   ),
                   //↑AddWordPageっていうクラスないのuserEmailっていう変数にemailを代入しまっせ
                 );
+                model.fetchEvents();
               },
             );
           }),
