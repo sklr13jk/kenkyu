@@ -33,7 +33,7 @@ class MainModel extends ChangeNotifier {
     } catch (e) {
       print(e);
     }
-  } //todo 消しても良い
+  }
 
   Future fetchEvents() async {
     p = 0;

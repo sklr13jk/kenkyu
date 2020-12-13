@@ -61,7 +61,6 @@ class MainPage extends StatelessWidget {
                 );
               },
             );
-            model.fetchEvents();
           }),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
@@ -90,6 +89,7 @@ class MainPage extends StatelessWidget {
                   RaisedButton(
                     child: Text('Sign Out Google'),
                     onPressed: () {
+                      model.handleSignOut().catchError((e) => print(e));
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) {
