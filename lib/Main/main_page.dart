@@ -15,6 +15,16 @@ class MainPage extends StatelessWidget {
   String name = '';
   String email;
   String photoUrl;
+  List<double> graphData = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+  ];
   Map<String, double> eventList;
 
   MainPage({User userData}) {
@@ -34,20 +44,25 @@ class MainPage extends StatelessWidget {
         create: (_) => MainModel()..fetchEvents(),
         child: Scaffold(
           //todo ↑scaffoldのなかに部品を書いていく。ボタンやアップバーなど。mainのbodyなど、順番はなんでもいい
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.book),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
+          floatingActionButton:
+              Consumer<MainModel>(builder: (context, model, child) {
+            return FloatingActionButton(
+              child: Icon(Icons.arrow_right),
+              onPressed: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
                     builder: (context) => AddWordPage(
-                          userEmail: email,
-                        )),
-                //↑AddWordPageっていうクラスないのuserEmailっていう変数にemailを代入しまっせ
-              );
-              //
-            },
-          ),
+                      userEmail: email,
+                    ),
+                    fullscreenDialog: true, //todo ページ遷移の仕方変わってます
+                  ),
+                  //↑AddWordPageっていうクラスないのuserEmailっていう変数にemailを代入しまっせ
+                );
+              },
+            );
+            model.fetchEvents();
+          }),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           //todo ↑場所の指定
@@ -88,34 +103,41 @@ class MainPage extends StatelessWidget {
               );
             },
           ),
-          body: Consumer<MainModel>(builder: (context, model, child) {
-            List<double> graphData = [0];
-            graphData = model.currentUserReadList;
-            List<Feature> features = [
-              Feature(
-                title: "自分が読んだ文字数",
-                color: Colors.blue,
-                data: graphData,
-              ),
-            ];
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(model.currentUserReadList.length.toString()),
-                Container(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 64.0),
-                  child: Text(
-                    "Tasks Track",
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                    ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 64.0),
+                child: Text(
+                  "Tasks Track",
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2,
                   ),
                 ),
-                LineGraph(
+              ),
+              Consumer<MainModel>(builder: (context, model, child) {
+                graphData = [
+                  model.eventList[0][1],
+                  model.eventList[1][1],
+                  model.eventList[2][1],
+                  model.eventList[3][1],
+                  model.eventList[4][1],
+                  model.eventList[5][1],
+                  model.eventList[6][1],
+                  model.eventList[7][1],
+                ];
+                List<Feature> features = [
+                  Feature(
+                    title: "自分が読んだ文字数",
+                    color: Colors.blue,
+                    data: graphData,
+                  ),
+                ];
+                return LineGraph(
                   features: features,
                   size: Size(500, 400),
                   labelX: [
@@ -131,13 +153,13 @@ class MainPage extends StatelessWidget {
                   labelY: ['200文字', '400文字', '600文字', '800文字', '1000文字'],
                   showDescription: true,
                   graphColor: Colors.white30,
-                ),
-                SizedBox(
-                  height: 50,
-                )
-              ],
-            );
-          }),
+                );
+              }),
+              SizedBox(
+                height: 50,
+              )
+            ],
+          ),
         ),
       ),
     );

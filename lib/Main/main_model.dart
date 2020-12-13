@@ -9,11 +9,22 @@ class MainModel extends ChangeNotifier {
   List<ReadAmount> wordList;
   String userEmail;
   List<double> currentUserReadList = [0];
-  List<String> currentUserTimeList = ['start'];
-  List<String> currentUserIdList = [];
-  Map<String, List> eventList;
+  List<int> currentUserDaysList;
+  List<String> currentUserIdList;
   String words;
-  List<double> dummyReadList = [0];
+  int days;
+  List<bool> daysFinder = [
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
+  Map<int, List> eventList = {};
+  int p;
 
   Future<void> handleSignOut() async {
     await FirebaseAuth.instance.signOut();
@@ -22,75 +33,79 @@ class MainModel extends ChangeNotifier {
     } catch (e) {
       print(e);
     }
-  }
+  } //todo 消しても良い
 
   Future fetchEvents() async {
-    currentUserReadList = [0];
-    currentUserTimeList = ['st'];
-    currentUserIdList = [userEmail];
+    p = 0;
     eventList = {};
+    currentUserReadList = [0];
+    currentUserDaysList = [0];
+    currentUserIdList = ["dummy"];
     final docs = await FirebaseFirestore.instance.collection('wordList').get();
     final wordList = docs.docs.map((doc) => ReadAmount(doc)).toList();
     this.wordList = wordList;
-    final dateTimeList = wordList.map((event) => event.eventTime).toList();
+    final userDaysList = wordList.map((event) => event.readDays).toList();
     final userEmailList = wordList.map((event) => event.userEmail).toList();
-    final charactersReadList =
-        wordList.map((event) => event.charactersRead).toList();
+    final userReadList = wordList.map((event) => event.charactersRead).toList();
     final idList = wordList.map((event) => event.documentID).toList();
-    print('dateTimeList:${dateTimeList.length}');
+    print('userDaysList:${userDaysList.length}');
     print('userEmailList:${userEmailList.length}');
-    print('charactersReadList:${charactersReadList.length}');
+    print('userReadList:${userReadList.length}');
     print('idList:${idList.length}');
     //todo リスト数確認
 
     final originalData =
-        charactersReadList.map(int.parse).toList(); //todo Stringリスト→intリスト
+        userReadList.map(int.parse).toList(); //todo Stringリスト→intリスト
     final doubleOriginalData = originalData.map((i) => i.toDouble()).toList();
-    final allUserReadList =
+    final doubleUserReadList =
         doubleOriginalData.map((original) => original / 1000).toList();
 
     for (int i = 0; i < userEmailList.length; i++) {
       if (userEmailList[i] == userEmail) {
-        currentUserReadList.add(allUserReadList[i]);
-        currentUserTimeList.add(dateTimeList[i]);
+        currentUserReadList.add(doubleUserReadList[i]);
+        currentUserDaysList.add(userDaysList[i]);
         currentUserIdList.add(idList[i]);
-        eventList[currentUserTimeList[i]] = [
-          currentUserReadList[i],
-          currentUserIdList[i]
-        ];
       }
     }
     print('currentUserReadList:${currentUserReadList.length}');
-    print('currentUserTimeList:${currentUserTimeList.length}');
-    // print('currentUserIdList:${currentUserIdList.length}');
+    print('currentUserDaysList:${currentUserDaysList.length}');
+    print('currentUserIdList:${currentUserIdList.length}');
+    //todo
+    for (int i = 0; i < 8; i++) {
+      if (currentUserDaysList.contains(i)) {
+        eventList[i] = [currentUserIdList[p], currentUserReadList[p]];
+        daysFinder[i] = true;
+        p++;
+      } else {
+        eventList[i] = ['dummy', 0.0];
+        daysFinder[i] = false;
+      }
+    }
+
     print(eventList);
-    //todo リスト数確認
+    print(daysFinder);
 
     notifyListeners();
   }
 
   Future addWordsToFirebase() async {
-    DateTime time = DateTime.now();
-    DateTime yearToDay = DateTime(time.year, time.month, time.day);
     await FirebaseFirestore.instance.collection('wordList').add({
       'readAmount': words,
-      'eventTime': yearToDay.toString(),
+      'eventTime': DateTime.now(),
       'createUser': userEmail,
+      'readDays': days,
     });
   }
 
   Future changeEvent() async {
-    DateTime time = DateTime.now();
-    DateTime yearToDay = DateTime(time.year, time.month, time.day);
-    String todayId = eventList[yearToDay][1];
-    final todayEvent =
-        FirebaseFirestore.instance.collection('events').doc(todayId);
-    await todayEvent.update(
-      {
-        'readAmount': '0',
-        'eventTime': yearToDay.toString(),
-        'createUser': userEmail,
-      },
-    );
+    String todayId = await eventList[days][0];
+    DocumentReference todayEvent =
+        FirebaseFirestore.instance.collection('wordList').doc(todayId);
+    await todayEvent.update({
+      'readAmount': words,
+      'eventTime': DateTime.now(),
+      'createUser': userEmail,
+      'readDays': days,
+    });
   }
 }

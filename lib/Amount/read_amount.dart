@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ReadAmount {
   String documentID;
-  String eventTime;
+  int readDays;
   String userEmail;
   String charactersRead;
 
   ReadAmount(DocumentSnapshot doc) {
     documentID = doc.id;
-    eventTime = doc.data()['eventTime'];
+    readDays = doc.data()['readDays'];
     userEmail = doc.data()['createUser'];
     charactersRead = doc.data()['readAmount'];
   }

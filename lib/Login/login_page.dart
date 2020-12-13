@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 
 void main() async {
+  ErrorWidget.builder = (FlutterErrorDetails details) => Container();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(LoginPage());
@@ -38,18 +39,18 @@ class LoginPage extends StatelessWidget {
                         await model
                             .handleSignIn()
                             .then((User user) => {
-                          if (user == null)
-                          //↑ここのuserってどこで定義したん？
-                            {}
-                          else
-                            {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          MainPage(userData: user)))
-                            },
-                        })
+                                  if (user == null)
+                                    //↑ここのuserってどこで定義したん？
+                                    {}
+                                  else
+                                    {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  MainPage(userData: user)))
+                                    },
+                                })
                             .catchError((e) => print(e));
                       },
                     ),
