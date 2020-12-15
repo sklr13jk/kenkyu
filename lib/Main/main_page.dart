@@ -70,7 +70,7 @@ class MainPage extends StatelessWidget {
             title: Consumer<MainModel>(builder: (context, model, child) {
               model.userEmail = email;
               //todo ↑モデルのuseremailをemailに代入するよ
-              return Text('習慣確認画面');
+              return Text('文字数');
               //todo ↑{}があると大体returnする
             }),
           ),
@@ -151,7 +151,14 @@ class MainPage extends StatelessWidget {
                     'Day6',
                     'Day7',
                   ],
-                  labelY: ['200文字', '400文字', '600文字', '800文字', '1000文字'],
+                  labelY: [
+                    '500文字',
+                    '1000文字',
+                    '1500文字',
+                    '2000文字',
+                    '2500文字',
+                    '3000文字'
+                  ],
                   showDescription: true,
                   graphColor: Colors.white30,
                 );

@@ -58,7 +58,7 @@ class MainModel extends ChangeNotifier {
         userReadList.map(int.parse).toList(); //todo Stringリスト→intリスト
     final doubleOriginalData = originalData.map((i) => i.toDouble()).toList();
     final doubleUserReadList =
-        doubleOriginalData.map((original) => original / 1000).toList();
+        doubleOriginalData.map((original) => original / 3000).toList();
 
     for (int i = 0; i < userEmailList.length; i++) {
       if (userEmailList[i] == userEmail) {

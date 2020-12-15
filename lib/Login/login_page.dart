@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget {
         //↑これ何？
         child: Scaffold(
           appBar: AppBar(
-            title: Text('googleアカウントでログインしてください。'),
+            title: Text('よむぽん'),
           ),
           body: Consumer<LoginModel>(builder: (context, model, child) {
             return Center(
@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     RaisedButton(
-                      child: Text('Sign in Google'),
+                      child: Text('googleで読む'),
                       onPressed: () async {
                         await model
                             .handleSignIn()
