@@ -70,7 +70,7 @@ class MainPage extends StatelessWidget {
             title: Consumer<MainModel>(builder: (context, model, child) {
               model.userEmail = email;
               //todo ↑モデルのuseremailをemailに代入するよ
-              return Text('文字数');
+              return Text('グラフ画面');
               //todo ↑{}があると大体returnする
             }),
           ),
@@ -112,9 +112,9 @@ class MainPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 64.0),
                 child: Text(
-                  "Tasks Track",
+                  "読書量を確認しよう！",
                   style: TextStyle(
-                    fontSize: 32,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2,
                   ),
@@ -152,12 +152,12 @@ class MainPage extends StatelessWidget {
                     'Day7',
                   ],
                   labelY: [
-                    '500文字',
                     '1000文字',
-                    '1500文字',
                     '2000文字',
-                    '2500文字',
-                    '3000文字'
+                    '3000文字',
+                    '4000文字',
+                    '5000文字',
+                    '6000文字'
                   ],
                   showDescription: true,
                   graphColor: Colors.white30,

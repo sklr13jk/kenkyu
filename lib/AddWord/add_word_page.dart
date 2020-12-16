@@ -19,7 +19,7 @@ class AddWordPage extends StatelessWidget {
       create: (_) => MainModel()..fetchEvents(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('読んだ文字数を追加してください'),
+          title: Text('読んだ文字数を追加しよう！'),
         ),
         body: Consumer<MainModel>(
           builder: (context, model, child) {
