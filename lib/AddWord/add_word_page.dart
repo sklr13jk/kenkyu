@@ -45,126 +45,138 @@ class AddWordPage extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: 16.0),
-                RaisedButton(
-                  child: Text('１日目に記録する'),
-                  onPressed: () async {
-                    if (model.words == null || model.words == "") {
-                      await nullEvent(context); //todo 文字数を入力してない場合に表示する
-                    } else if (model.daysFinder[1] == true) {
-                      model.days = await Future.value(1);
-                      await changeWord(model, context);
-                      await model.fetchEvents();
-                      Navigator.pop(context, true);
-                    } else {
-                      model.days = await Future.value(1);
-                      await addWord(model, context);
-                      // todo:cloudFireStoreに文字数を追加
-                      await model.fetchEvents();
-                      Navigator.pop(context, true);
-                    }
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RaisedButton(
+                      child: Text('１日目に記録する'),
+                      onPressed: () async {
+                        if (model.words == null || model.words == "") {
+                          await nullEvent(context); //todo 文字数を入力してない場合に表示する
+                        } else if (model.daysFinder[1] == true) {
+                          model.days = await Future.value(1);
+                          await changeWord(model, context);
+                          await model.fetchEvents();
+                          Navigator.pop(context, true);
+                        } else {
+                          model.days = await Future.value(1);
+                          await addWord(model, context);
+                          // todo:cloudFireStoreに文字数を追加
+                          await model.fetchEvents();
+                          Navigator.pop(context, true);
+                        }
+                      },
+                    ),
+                    SizedBox(width: 16.0),
+                    RaisedButton(
+                      child: Text('２日目に記録する'),
+                      onPressed: () async {
+                        if (model.words == null || model.words == "") {
+                          await nullEvent(context); //todo 文字数を入力してない場合に表示する
+                        } else if (model.daysFinder[2] == true) {
+                          model.days = await Future.value(2);
+                          await changeWord(model, context);
+                          await model.fetchEvents();
+                          Navigator.pop(context, true);
+                        } else {
+                          model.days = await Future.value(2);
+                          await addWord(model, context);
+                          // todo:cloudFireStoreに文字数を追加
+                          await model.fetchEvents();
+                          Navigator.pop(context, true);
+                        }
+                      },
+                    ),
+                  ],
                 ),
-                SizedBox(height: 16.0),
-                RaisedButton(
-                  child: Text('２日目に記録する'),
-                  onPressed: () async {
-                    if (model.words == null || model.words == "") {
-                      await nullEvent(context); //todo 文字数を入力してない場合に表示する
-                    } else if (model.daysFinder[2] == true) {
-                      model.days = await Future.value(2);
-                      await changeWord(model, context);
-                      await model.fetchEvents();
-                      Navigator.pop(context, true);
-                    } else {
-                      model.days = await Future.value(2);
-                      await addWord(model, context);
-                      // todo:cloudFireStoreに文字数を追加
-                      await model.fetchEvents();
-                      Navigator.pop(context, true);
-                    }
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RaisedButton(
+                      child: Text('３日目に記録する'),
+                      onPressed: () async {
+                        if (model.words == null || model.words == "") {
+                          await nullEvent(context); //todo 文字数を入力してない場合に表示する
+                        } else if (model.daysFinder[3] == true) {
+                          model.days = await Future.value(3);
+                          await changeWord(model, context);
+                          await model.fetchEvents();
+                          Navigator.pop(context, true);
+                        } else {
+                          model.days = await Future.value(3);
+                          await addWord(model, context);
+                          // todo:cloudFireStoreに文字数を追加
+                          await model.fetchEvents();
+                          Navigator.pop(context, true);
+                        }
+                      },
+                    ),
+                    SizedBox(width: 16.0),
+                    RaisedButton(
+                      child: Text('４日目に記録する'),
+                      onPressed: () async {
+                        if (model.words == null || model.words == "") {
+                          await nullEvent(context); //todo 文字数を入力してない場合に表示する
+                        } else if (model.daysFinder[4] == true) {
+                          model.days = await Future.value(4);
+                          await changeWord(model, context);
+                          await model.fetchEvents();
+                          Navigator.pop(context, true);
+                        } else {
+                          model.days = await Future.value(4);
+                          await addWord(model, context);
+                          // todo:cloudFireStoreに文字数を追加
+                          await model.fetchEvents();
+                          Navigator.pop(context, true);
+                        }
+                      },
+                    ),
+                  ],
                 ),
-                SizedBox(height: 16.0),
-                RaisedButton(
-                  child: Text('３日目に記録する'),
-                  onPressed: () async {
-                    if (model.words == null || model.words == "") {
-                      await nullEvent(context); //todo 文字数を入力してない場合に表示する
-                    } else if (model.daysFinder[3] == true) {
-                      model.days = await Future.value(3);
-                      await changeWord(model, context);
-                      await model.fetchEvents();
-                      Navigator.pop(context, true);
-                    } else {
-                      model.days = await Future.value(3);
-                      await addWord(model, context);
-                      // todo:cloudFireStoreに文字数を追加
-                      await model.fetchEvents();
-                      Navigator.pop(context, true);
-                    }
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RaisedButton(
+                      child: Text('５日目に記録する'),
+                      onPressed: () async {
+                        if (model.words == null || model.words == "") {
+                          await nullEvent(context); //todo 文字数を入力してない場合に表示する
+                        } else if (model.daysFinder[5] == true) {
+                          model.days = await Future.value(5);
+                          await changeWord(model, context);
+                          await model.fetchEvents();
+                          Navigator.pop(context, true);
+                        } else {
+                          model.days = await Future.value(5);
+                          await addWord(model, context);
+                          // todo:cloudFireStoreに文字数を追加
+                          await model.fetchEvents();
+                          Navigator.pop(context, true);
+                        }
+                      },
+                    ),
+                    SizedBox(width: 16.0),
+                    RaisedButton(
+                      child: Text('６日目に記録する'),
+                      onPressed: () async {
+                        if (model.words == null || model.words == "") {
+                          await nullEvent(context); //todo 文字数を入力してない場合に表示する
+                        } else if (model.daysFinder[6] == true) {
+                          model.days = await Future.value(6);
+                          await changeWord(model, context);
+                          await model.fetchEvents();
+                          Navigator.pop(context, true);
+                        } else {
+                          model.days = await Future.value(6);
+                          await addWord(model, context);
+                          // todo:cloudFireStoreに文字数を追加
+                          await model.fetchEvents();
+                          Navigator.pop(context, true);
+                        }
+                      },
+                    ),
+                  ],
                 ),
-                SizedBox(height: 16.0),
-                RaisedButton(
-                  child: Text('４日目に記録する'),
-                  onPressed: () async {
-                    if (model.words == null || model.words == "") {
-                      await nullEvent(context); //todo 文字数を入力してない場合に表示する
-                    } else if (model.daysFinder[4] == true) {
-                      model.days = await Future.value(4);
-                      await changeWord(model, context);
-                      await model.fetchEvents();
-                      Navigator.pop(context, true);
-                    } else {
-                      model.days = await Future.value(4);
-                      await addWord(model, context);
-                      // todo:cloudFireStoreに文字数を追加
-                      await model.fetchEvents();
-                      Navigator.pop(context, true);
-                    }
-                  },
-                ),
-                SizedBox(height: 16.0),
-                RaisedButton(
-                  child: Text('５日目に記録する'),
-                  onPressed: () async {
-                    if (model.words == null || model.words == "") {
-                      await nullEvent(context); //todo 文字数を入力してない場合に表示する
-                    } else if (model.daysFinder[5] == true) {
-                      model.days = await Future.value(5);
-                      await changeWord(model, context);
-                      await model.fetchEvents();
-                      Navigator.pop(context, true);
-                    } else {
-                      model.days = await Future.value(5);
-                      await addWord(model, context);
-                      // todo:cloudFireStoreに文字数を追加
-                      await model.fetchEvents();
-                      Navigator.pop(context, true);
-                    }
-                  },
-                ),
-                SizedBox(height: 16.0),
-                RaisedButton(
-                  child: Text('６日目に記録する'),
-                  onPressed: () async {
-                    if (model.words == null || model.words == "") {
-                      await nullEvent(context); //todo 文字数を入力してない場合に表示する
-                    } else if (model.daysFinder[6] == true) {
-                      model.days = await Future.value(6);
-                      await changeWord(model, context);
-                      await model.fetchEvents();
-                      Navigator.pop(context, true);
-                    } else {
-                      model.days = await Future.value(6);
-                      await addWord(model, context);
-                      // todo:cloudFireStoreに文字数を追加
-                      await model.fetchEvents();
-                      Navigator.pop(context, true);
-                    }
-                  },
-                ),
-                SizedBox(height: 16.0),
                 RaisedButton(
                   child: Text('７日目に記録する'),
                   onPressed: () async {

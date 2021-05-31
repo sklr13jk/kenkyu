@@ -121,16 +121,17 @@ class MainPage extends StatelessWidget {
                 ),
               ),
               Consumer<MainModel>(builder: (context, model, child) {
-                graphData = [
-                  model.eventList[0][1],
-                  model.eventList[1][1],
-                  model.eventList[2][1],
-                  model.eventList[3][1],
-                  model.eventList[4][1],
-                  model.eventList[5][1],
-                  model.eventList[6][1],
-                  model.eventList[7][1],
-                ];
+                // graphData = [
+                //   model.eventList[0][1],
+                //   model.eventList[1][1],
+                //   model.eventList[2][1],
+                //   model.eventList[3][1],
+                //   model.eventList[4][1],
+                //   model.eventList[5][1],
+                //   model.eventList[6][1],
+                //   model.eventList[7][1],
+                // ];
+                graphData = [0, 0.1, 0.15, 0.22, 0.20, 0.33, 0.23, 0.20];
                 List<Feature> features = [
                   Feature(
                     title: "自分が読んだ文字数",
@@ -143,13 +144,13 @@ class MainPage extends StatelessWidget {
                   size: Size(500, 400),
                   labelX: [
                     '  ',
-                    'Day1',
-                    'Day2',
-                    'Day3',
-                    'Day4',
-                    'Day5',
-                    'Day6',
-                    'Day7',
+                    '1',
+                    '2',
+                    '3',
+                    '4',
+                    '5',
+                    '6',
+                    '7',
                   ],
                   labelY: [
                     '1000文字',
@@ -157,7 +158,7 @@ class MainPage extends StatelessWidget {
                     '3000文字',
                     '4000文字',
                     '5000文字',
-                    '6000文字'
+                    '6000文字',
                   ],
                   showDescription: true,
                   graphColor: Colors.white30,
